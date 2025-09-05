@@ -31,12 +31,18 @@ class BaseAgent:
         return self.llm.complete_chat(self._messages(prompt), max_tokens=128, temperature=0.7).strip()
 
     def feedback(self, question: str, answer: str) -> str:
-        """Return 3 short bullets of feedback."""
+        """Return 4 short bullets of feedback (or a prompt to answer if blank)."""
+        # If the candidate submits nothing (or only whitespace), skip the LLM call.
+        if not answer or not answer.strip():
+            return "Please Answer the question"
+    
         prompt = (
-            "Evaluate the candidate’s answer in 3 short bullets covering:\n"
-            "1) structure, 2) technical depth/accuracy, 3) trade-offs.\n"
+            "Identify and express the positive points and Evaluate the candidate’s answer in 4 short bullets covering:\n"
+            "1) positives, 2) structure, 3) technical depth/accuracy, 4) trade-offs.\n"
             "Each bullet ≤20 words. No preface text.\n\n"
             f"Question: {question}\n"
             f"Answer: {answer}"
         )
-        return self.llm.complete_chat(self._messages(prompt), max_tokens=160, temperature=0.6).strip()
+        return self.llm.complete_chat(
+            self._messages(prompt), max_tokens=160, temperature=0.6
+        ).strip()
