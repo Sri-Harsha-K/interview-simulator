@@ -11,14 +11,14 @@ with st.sidebar:
 
 if "persona" not in st.session_state: st.session_state.persona = None
 if "question" not in st.session_state: st.session_state.question = None
-if "context" not in st.session_state: st.session_state.context = "Backend Engineer; APIs & scalability"
+if "context" not in st.session_state: st.session_state.context = None
 
 st.subheader("Context")
 st.session_state.context = st.text_area("Describe the role/scenario:", st.session_state.context, height=100)
 
 c1, c2 = st.columns(2)
 with c1:
-    if st.button("Ask me a question", use_container_width=True):
+    if st.button("Begin the interview", use_container_width=True):
         try:
             r = requests.post(f"{BACKEND}/ask", json={"context": st.session_state.context}, timeout=60)
             r.raise_for_status()
