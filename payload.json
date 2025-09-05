@@ -1,0 +1,4 @@
+{
+  "inputs": "Say hello in one short sentence.",
+  "parameters": { "max_new_tokens": 32, "return_full_text": false }
+}

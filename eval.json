@@ -1,0 +1,5 @@
+{
+  "persona": "tech",
+  "question": "Design an API for a real-time social media feed to handle 100,000 concurrent users, with a 10ms latency threshold and 99.9% uptime, ensuring data consistency and fault tolerance.",
+  "answer": "I’d use a gateway with token buckets, per-tenant quotas, and autoscaling stateless workers."
+}

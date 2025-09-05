@@ -1,0 +1,16 @@
+# Virtualenv & Python cache
+.venv/
+__pycache__/
+*.pyc
+
+# Local secrets
+.env
+
+# Generated/large
+media/
+data/models/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
