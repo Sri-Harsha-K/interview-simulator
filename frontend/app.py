@@ -52,7 +52,7 @@ if st.session_state.question:
             except Exception as e:
                 st.error(f"/evaluate failed: {e}")
     with c4:
-        if st.button("Begin the interview", use_container_width=True):
+        if st.button("Ask next question", use_container_width=True):
             try:
                 r = requests.post(f"{BACKEND}/ask", json={"context": st.session_state.context}, timeout=60)
                 r.raise_for_status()
